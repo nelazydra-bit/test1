@@ -106,6 +106,14 @@ def main():
 (() => {
   const audio = document.getElementById("background-music");
   const button = document.getElementById("background-music-toggle");
+  window.stopBackgroundMusic = () => {
+    audio.pause();
+    audio.currentTime = 0;
+    button.textContent = "Play background music";
+    button.setAttribute("aria-pressed", "false");
+  };
+  window.addEventListener("pagehide", window.stopBackgroundMusic);
+  window.addEventListener("beforeunload", window.stopBackgroundMusic);
   button.addEventListener("click", () => {
     if (!audio.paused) {
       audio.pause();

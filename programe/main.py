@@ -1,6 +1,13 @@
 import asyncio
 import pygame
 import random
+import platform
+
+
+def stop_background_music():
+    browser_window = getattr(platform, "window", None)
+    if browser_window is not None:
+        browser_window.stopBackgroundMusic()
 
 
 async def main():
@@ -356,6 +363,7 @@ async def main():
             screen.blit(question1,(0,0))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    stop_background_music()
                     run= False
                     runing=0
                 elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -450,12 +458,14 @@ async def main():
     #DIEU CHINH
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                stop_background_music()
                 run = False
             elif event.type == pygame.MOUSEBUTTONDOWN and duty == 2:
                 answer = choose_answer_duty1(oder_answer_duty_list, choose, answer)
         pygame.display.flip()
         await asyncio.sleep(0)
         clock.tick(60)
+    stop_background_music()
     pygame.quit()
 if __name__=='__main__':
     asyncio.run(main())
