@@ -1,0 +1,192 @@
+@font-face {
+    font-family: 'MyPixelFont'; 
+    src: url('haha.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body
+/* 1. Thiết lập toàn màn hình và chèn ảnh nền */
+ {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Thay link ảnh của bạn vào chỗ url('...') dưới đây */
+    background: url('background.JPG') no-repeat center center fixed;
+    background-size: cover; /* Giúp ảnh phủ kín toàn màn hình */
+    overflow: hidden;
+}
+
+/* Lớp phủ mờ giúp bảng và nút nổi bật hơn trên nền ảnh */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Làm tối nền đi một chút */
+    z-index: 1;
+}
+
+/* 2. Khung chứa sảnh game (nằm trên lớp phủ) */
+.lobby-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px; /* Khoảng cách giữa bảng chữ và nút Play */
+}
+
+/* 3. Bảng giới thiệu nhỏ */
+/* BẢNG GIỚI THIỆU */
+.intro-box {
+    position: relative; /* Để làm điểm tựa căn góc cho dấu X */
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px 35px 20px 35px; /* Tăng padding phía trên để không bị đè chữ vào dấu X */
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    max-width: 450px;
+    backdrop-filter: blur(8px);
+}
+/*màu giới thieu*/
+.intro-box p {
+    margin: 0;
+    color: #54FF9F;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.6px;
+}
+h2 {
+    font-family: 'MyPixelFont', sans-serif;
+    font-size: 28px; /* Tùy chỉnh kích thước tiêu đề theo ý bạn (nên là bội số của 8) */
+    color: #EEEE00;     /* Tùy chỉnh màu sắc chữ nếu muốn */
+    
+    /* Giữ cho nét chữ h2 pixel luôn sắc cạnh, không bị nhòe */
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: none;
+    font-smooth: never;
+}
+h1 {
+    color: #F8F8FF;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 80px;
+}
+/* NÚT DẤU X NHỎ PHÍA TRÊN BÊN PHẢI */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #ff4b2b; /* Màu trắng mờ ban đầu */
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer; /* Biến con trỏ chuột thành hình bàn tay khi rê vào */
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0px 8px;
+    border-radius: 4px;
+}
+
+/* Hiệu ứng khi rê chuột vào dấu X sẽ sáng lên màu đỏ */
+.close-btn:hover {
+    color: #ff4b2b; 
+    background: #ff4b2b;
+}
+
+.play-btn {
+    display: inline-block;
+    padding: 18px 65px;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: # FFB90F;
+    text-decoration: none;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border-radius: 50px;
+    box-shadow: 0 6px 20px rgba(255, 75, 43, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+/* 4. Nút PLAY lớn */
+.play-btn {
+    display: inline-block;
+    padding: 20px 60px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none; /* Bỏ gạch chân của thẻ <a> */
+    background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Màu cam hồng gaming */
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+    transition: all 0.3s ease; /* Hiệu ứng mượt mà khi rê chuột */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.play-btn:hover{
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(255, 75, 43, 0.8);
+}
+
+/* Hiệu ứng khi di chuột (Hover) vào nút Play */
+.play-btn:hover {
+    transform: scale(1.1); /* Nút phóng to lên một chút */
+    box-shadow: 0 8px 25px rgba(255, 75, 43, 0.6);
+    background: linear-gradient(45deg, #ff4b2b, #ff416c);
+}
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex; /* Căn giữa bảng */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Khung hộp thoại thông tin */
+.modal-box {
+    background-color: #16213e;
+    color: #FF6A6A;
+    padding: 30px;
+    width: 350px;
+    border-radius: 12px;
+    border: 2px solid #0f3460;
+    position: relative; /* Gốc tọa độ để định vị nút X */
+    animation: popUp 0.4s ease; /* Hiệu ứng nảy bảng */
+}
+
+/* Định vị nút X nằm ở góc phải */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #e94560;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #ff6b81; /* Đổi màu sáng hơn khi di chuột vào */
+}
+
+.modal-box h2 {
+    margin-top: 0;
+    color: #4dd0e1;
+    text-align: center;
+}
+
+/* Hiệu ứng phóng to nhẹ khi bảng xuất hiện */
+@keyframes popUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

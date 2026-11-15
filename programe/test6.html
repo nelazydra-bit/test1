@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Lobby</title>
+    <!-- Liên kết file CSS -->
+    <link rel="stylesheet" href="html.css">
+</head>
+<body>
+<!-- 1. KHUNG CHỨA SẢNH GAME -->
+    <div class="lobby-container">
+        
+        <!-- Bảng giới thiệu trò chơi (Đặt ID chuẩn xác là introGameBox) -->
+        <div id="introGameBox" class="intro-box">
+            
+            <!-- Nút X (Gọi đúng tên hàm dongBangGioiThieu) -->
+            <span class="close-btn" onclick="dongBangGioiThieu()">&times;</span>
+            <h2>GIỚI THIỆU CÁCH CHƠI GAME</h2>
+            <p style="text-align: left;"><strong> J:</strong> Đi sang bên phải</p>
+            <p style="text-align: left;"><strong> F:</strong> Đi sang bên trái</p>
+            <p style="text-align: left;"><strong> Q:</strong> Câu hỏi </p>
+            <p style="text-align: left;"><strong> R:</strong> Quay lại chỗ đầu tiên</p>
+            <p style="text-align: left;"><strong>💥LƯU Ý:</strong>Sau khi trả lời câu hỏi ở con cáo thì hãy quay lại chỗ xuất phát đầu tiên và đi vô căn nhà để vào map tiếp theo </p>
+        </div>
+
+        <!-- Màn hình game chính và Nút Play -->
+        <div class="game-screen">
+            <h1>HEALING_ENGlISH</h1>
+            <a href="https://nelazydra-bit.github.io/healing_english/" class="play-btn">PLAY</a>
+        </div>
+
+    </div>
+
+    <!-- 2. ĐOẠN CODE JAVASCRIPT (ĐẶT RIÊNG Ở DƯỚI CÙNG FILE) -->
+    <script>
+        function dongBangGioiThieu() {
+            // Lấy đúng bảng introGameBox để ẩn đi
+            const bangIntro = document.getElementById("introGameBox");
+            if (bangIntro) {
+                bangIntro.style.display = "none";
+                console.log("Đã ẩn bảng giới thiệu thành công!");
+            }
+        }
+    </script>
+</body>
+</html>
+</script>
+</body>
+</html>
