@@ -72,6 +72,8 @@ def main():
                 "--build",
                 "--title",
                 "Healing English",
+                "--ume_block",
+                "0",
                 "--icon",
                 str(app_dir / "favicon.png"),
                 str(app_dir),
