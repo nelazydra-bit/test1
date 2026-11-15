@@ -37,8 +37,8 @@ async def main():
     tree=pygame.transform.scale(tree,(SCREEN_WIDTH*1.2,SCREEN_HEIGHT-100))
     oject_x=0
 #âm thanh đáp án
-    False_sound=pygame.mixer.Sound("False_sound.wav")
-    True_sound=pygame.mixer.Sound("True_sound.wav")
+    False_sound=pygame.mixer.Sound("False_sound.ogg")
+    True_sound=pygame.mixer.Sound("True_sound.ogg")
 #hướng dẫn
     note1=pygame.image.load('note1.png').convert_alpha()
     note1.set_colorkey((0,0,0))
@@ -162,14 +162,7 @@ async def main():
     wrong_mode1.set_colorkey((0,0,0))
 
     def sort_answer(answer_list):
-        another_list=answer_list
-        oder_answer_list=[]
-        for i in range(len(another_list)):
-            oder_number=random.choice(answer_list)
-            oder_answer_list.append(oder_number)
-            another_list.remove(oder_number)
-        
-        return oder_answer_list
+        return random.sample(answer_list, len(answer_list))
 
 
     def player_move_right(player,player_x,key,player_x_no_move,oject_x,stopper_x):
