@@ -14,6 +14,7 @@ ASSETS = (
     "False_sound.ogg",
     "NPC.png",
     "True_sound.ogg",
+    "bg_ground_new.ogg",
     "answer2_false1.png",
     "answer2_false2.png",
     "answer2_false3.png",
