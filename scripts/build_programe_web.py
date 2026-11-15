@@ -96,11 +96,34 @@ def main():
         html = index.read_text(encoding="utf-8")
         music_control = """
 <style>
-#background-music { position: fixed; z-index: 10000; top: 12px; right: 12px; width: min(320px, calc(100vw - 24px)); }
+#background-music-toggle { position: fixed; z-index: 10000; top: 12px; right: 12px; padding: 10px 14px; cursor: pointer; }
 </style>
-<audio id="background-music" controls loop preload="none" aria-label="Healing English background music">
+<audio id="background-music" loop preload="none">
   <source src="bg_ground_new.ogg" type="audio/ogg">
 </audio>
+<button id="background-music-toggle" type="button" aria-pressed="false">Play background music</button>
+<script>
+(() => {
+  const audio = document.getElementById("background-music");
+  const button = document.getElementById("background-music-toggle");
+  button.addEventListener("click", () => {
+    if (!audio.paused) {
+      audio.pause();
+      button.textContent = "Play background music";
+      button.setAttribute("aria-pressed", "false");
+      return;
+    }
+
+    audio.play().then(() => {
+      button.textContent = "Pause background music";
+      button.setAttribute("aria-pressed", "true");
+    }).catch((error) => {
+      button.textContent = "Tap to retry background music";
+      console.error("Background music playback failed:", error);
+    });
+  });
+})();
+</script>
 """
         if "</body>" not in html:
             raise ValueError("Pygbag output is missing the closing body tag")
