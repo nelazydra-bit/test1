@@ -39,8 +39,6 @@ async def main():
 #âm thanh đáp án
     False_sound=pygame.mixer.Sound("False_sound.ogg")
     True_sound=pygame.mixer.Sound("True_sound.ogg")
-    pygame.mixer.music.load("bg_ground_new.ogg")
-    music_started = False
 #hướng dẫn
     note1=pygame.image.load('note1.png').convert_alpha()
     note1.set_colorkey((0,0,0))
@@ -453,9 +451,6 @@ async def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-            elif event.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN) and not music_started:
-                pygame.mixer.music.play(-1)
-                music_started = True
             elif event.type == pygame.MOUSEBUTTONDOWN and duty == 2:
                 answer = choose_answer_duty1(oder_answer_duty_list, choose, answer)
         pygame.display.flip()

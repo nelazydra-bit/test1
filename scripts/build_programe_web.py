@@ -90,6 +90,21 @@ def main():
         if output.exists():
             shutil.rmtree(output)
         shutil.copytree(web_build, output)
+        shutil.copy2(ROOT / "bg_ground_new.ogg", output / "bg_ground_new.ogg")
+
+        index = output / "index.html"
+        html = index.read_text(encoding="utf-8")
+        music_control = """
+<style>
+#background-music { position: fixed; z-index: 10000; top: 12px; right: 12px; width: min(320px, calc(100vw - 24px)); }
+</style>
+<audio id="background-music" controls loop preload="none" aria-label="Healing English background music">
+  <source src="bg_ground_new.ogg" type="audio/ogg">
+</audio>
+"""
+        if "</body>" not in html:
+            raise ValueError("Pygbag output is missing the closing body tag")
+        index.write_text(html.replace("</body>", music_control + "</body>"), encoding="utf-8")
 
 
 if __name__ == "__main__":
